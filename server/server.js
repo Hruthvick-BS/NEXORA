@@ -6,7 +6,7 @@ import "dotenv/config";
 import { GoogleGenAI } from "@google/genai";
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const apiKey = process.env.GEMINI_API_KEY;
 
@@ -268,6 +268,7 @@ ${uploadedDocumentText}
 });
 
 
-app.listen(PORT, () => {
-  console.log(`NEXORA server running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`NEXORA server running on port ${PORT}`);
 });
+
