@@ -2,6 +2,9 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+
+
 function App() {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
@@ -27,7 +30,7 @@ async function generateSummary() {
     setSummary("");
 
     const response = await fetch(
-      "http://localhost:3001/api/summary",
+      `${API_URL}/api/summary`,
       {
         method: "POST",
       }
@@ -60,7 +63,7 @@ async function askQuestion(e) {
   setQuestion("");
 
   try {
-    const response = await fetch("http://localhost:3001/api/chat", {
+    const response = await fetch(`${API_URL}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -110,7 +113,7 @@ async function uploadPDF() {
     setUploadStatus("Uploading PDF...");
 
     const response = await fetch(
-      "http://localhost:3001/api/upload",
+      `${API_URL}/api/upload`,
       {
         method: "POST",
         body: formData,
@@ -137,7 +140,7 @@ async function generateMCQs() {
     setMcqs("");
 
     const response = await fetch(
-      "http://localhost:3001/api/mcq",
+      `${API_URL}/api/mcq`,
       {
         method: "POST",
       }
@@ -164,7 +167,7 @@ async function analyzeNotice() {
     setNoticeResult("");
 
     const response = await fetch(
-      "http://localhost:3001/api/notice",
+      `${API_URL}/api/notice`,
       {
         method: "POST",
       }
